@@ -6,7 +6,7 @@ I have created this guide as a reference for myself, but also to help others who
 
 This is a guide on how to install the PHP RPMs from Zend. This is the community edition you can use as any normal open source software. The ODBC extension is not installed with the normal Zend Server version of PHP, so if you want to use ODBC with PHP you are going to need to install the RPMs. 
 
-1.	Setup Packamge Manager: Make sure the you have installed the Open Source Package Management (OSPM) from ACS [Getting started with Open Source Package Management in IBM i ACS](https://www.ibm.com/support/pages/getting-started-open-source-package-management-ibm-i-acs)
+1.	Setup Packamge Manager: Make sure the you have installed the Open Source Package Management (OSPM) from ACS [Getting started with Open Source Package Management in IBM i ACS](https://www.ibm.com/support/pages/getting-started-open-source-package-management-ibm-i-acs){:target="_blank" rel="noopener"}
 
 2.	Install yum utilities: From the OSPM install yum-utils from the Available Packages tab. This will allow you to add 3rd party packages. 
 
@@ -18,7 +18,7 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
  yum-config-manager --add-repo http://repos.zend.com/ibmiphp/ppc64/
 ```
 
-(3rd Party Open Source Repos for IBM i)[https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md]
+(3rd Party Open Source Repos for IBM i)[https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md]{:target="_blank" rel="noopener"}
 
 As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
 
@@ -71,7 +71,7 @@ These are some example connection strings and directions to help people connect 
 
 ## IBM Connection String Reference
 
-[IBM ODBC Connection String Keywords](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_74/rzaik/connectkeywords.htm)
+[IBM ODBC Connection String Keywords](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_74/rzaik/connectkeywords.htm){:target="_blank" rel="noopener"}
 
 ## Connecting A PHP Application Running On IBM i To A DB2 Database Running On IBM i 
 
@@ -128,7 +128,7 @@ return array (
 
 It is possible to call RPG from another server over ODBC. This uses your PDO connection referenced above. 
 
-[IBM i PHP Toolkit](https://github.com/zendtech/IbmiToolkit)
+[IBM i PHP Toolkit](https://github.com/zendtech/IbmiToolkit){:target="_blank" rel="noopener"}
 
 ```
 <?php
