@@ -1,10 +1,14 @@
-# ExampleODBCDB2
-These are some example connection strings and directions to help people connect via ODBC to DB2 on the IBM i
+# Example ODBC Connection To DB2 On IBM i
+These are some example connection strings and directions to help people connect via ODBC to DB2 on the IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on the IBM i. 
+
+## IBM Connection String Reference
+
+[IBM ODBC Connection String Keywords](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_74/rzaik/connectkeywords.htm)
 
 
-## Connecting a PHP application running on Linux / Windows to a DB2 database running on IBM i 
+## Connecting A PHP Application Running On Linux / Windows To A DB2 Database Running On IBM i 
 
-
+As PHP can run on multiple OSes, it can be beneficial in some circumstances to run PHP on another server and use the IBM i just for its DB2 database and Business Intelligence. 
 
 ```
 <?php
