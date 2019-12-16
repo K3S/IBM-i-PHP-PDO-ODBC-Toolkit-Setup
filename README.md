@@ -1,5 +1,8 @@
-# Example ODBC Connection To DB2 On IBM i
+# Purpose
+
 I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. 
+
+# Example ODBC Connection To DB2 On IBM i
 
 These are some example connection strings and directions to help people connect via ODBC to DB2 on the IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on the IBM i. 
 
@@ -60,7 +63,9 @@ return array (
 
 ## Calling RPG via The PHP Toolkit Over PDO ODBC When PHP Runs On Linux / Windows
 
-It is possible to call RPG from 
+It is possible to call RPG from another server over ODBC. This uses your PDO connection referenced above. 
+
+[IBM i PHP Toolkit](https://github.com/zendtech/IbmiToolkit)
 
 ```
 <?php
@@ -91,3 +96,8 @@ class ToolkitFactory implements FactoryInterface
     }
 }
 ```
+
+# Installing PHP RPM on IBM i
+I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. 
+
+These are some example connection strings and directions to help people connect via ODBC to DB2 on the IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on the IBM i. 
