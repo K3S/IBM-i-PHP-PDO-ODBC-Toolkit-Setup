@@ -136,7 +136,7 @@ return array (
 
 ## Calling RPG via The PHP Toolkit Over PDO ODBC When PHP Runs On Linux / Windows
 
-It is possible to call RPG from another server over ODBC. This uses your PDO connection referenced above. 
+It is possible to call RPG from another server over ODBC. This uses your PDO connection referenced above. Below is the code from my application running in Zend Framework. 
 
 [IBM i PHP Toolkit](https://github.com/zendtech/IbmiToolkit){:target="_blank" rel="noopener"}
 
@@ -168,5 +168,21 @@ class ToolkitFactory implements FactoryInterface
 
     }
 }
+```
+
+Example calling code:
+```
+$value = 'test';
+$numvalue = 100;
+$param[] = $toolkit->AddParameterChar('BOTH', 10, 'Example Alpha of 10, null submit', 'PARM1', null);
+$param[] = $toolkit->AddParameterChar('BOTH', 10, 'Example Alpha of 100, $value submit', 'PARM2', $K3SOBJ);
+$param[] = $this->toolkit->AddParameterPackDec('BOTH', 5, 0, 'Example of Packed Dec 5 digits, 0 Decimals', 'PARM3', $numvalue);
+$param[] = $this->toolkit->AddParameterPackDec('BOTH', 7, 2, 'Example of Packed Dec 7 digits, 2 Decimals', 'PARM4', null);
+
+$result = $toolkit->PgmCall("RPGPROG", 'LIBNAME', $param, null, null);
+
+// The $result will store the results from the Toolkit Call, can be referenced as an array
+$returnvalue = $result['io_param']['PARM1'];
+echo $returnvalue;
 ```
 
