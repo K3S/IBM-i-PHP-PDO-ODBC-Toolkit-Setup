@@ -1,8 +1,8 @@
 # Purpose
 
-I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. Lots of this info is copy and pasted and I do not represent it as my own, only that I have aggregated it into one place to make it easier to use (there were many different sources for all this). 
+I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. Much of this info is copied and pasted, and I do not represent it as my own, only that I have aggregated it into one place for ease-of-use (there were many different sources for all of this). 
 
-Notably thank you to [Chuk Shirley](https://github.com/chukShirley){:target="_blank" rel="noopener"}, [Stephanie Rabinni](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, [Dave Dressler](https://godzillai5.wordpress.com/){:target="_blank" rel="noopener"}, and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
+Notably, thank you to [Chuk Shirley](https://github.com/chukShirley){:target="_blank" rel="noopener"}, [Stephanie Rabinni](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, [Dave Dressler](https://godzillai5.wordpress.com/){:target="_blank" rel="noopener"}, and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
 
 # Installing PHP RPM on IBM i
 
@@ -31,22 +31,22 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
    /QOpenSys/etc/php.ini
    ```
 
-   Extensions are added via this directory: 
+   Extensions are enabled via this directory: 
    ```
    /QOpenSys/etc/php/conf.d
    ```
    
    Visit [PHP.net](https://php.net){:target="_blank" rel="noopener"} to learn about configuration options. 
    
-   Default versions of configurations and all the extensions are added when you add the RPMs.
+   Default versions of configuration files and all the extensions are included when you install the RPMs.
    
-   Updates to RPMs: When there are updates shipped to the RPMs and the config files there is a good system to not get rid of your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the newer default ones to the same directory with this naming scheme: _filename_.rpmnew
+   Updates to RPMs: If you have made changes to the configuration files, subsequent RPM updates will preserve your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the new default ones to the same directory with this naming scheme: _filename_.rpmnew
 
 5. Create New Apache Instance On IBM i: Visit http://ibmiipaddress:2001/HTTPAdmin on your server where you replace ibmiipaddress with the IP address of your IBM server (note that the [Admin Server](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rzaie/rzaiemngsrvr.htm){:target="_blank" rel="noopener"} must be running). Click 'Create HTTP Server' in the top left hand corner, and go through the steps of adding a new Apache server. Note the webroot folders if you adjust from defaults. 
 
-6. Setup Aache To Run PHP:
+6. Set Up Aache To Run PHP:
 
-   Once you have created the Apache, use the "Edit Configuration File" option on the
+   Once you have created the Apache instance, use the "Edit Configuration File" option on the
 left panel to add the following configuration options near the top:
 
    ```
@@ -62,7 +62,7 @@ left panel to add the following configuration options near the top:
    DirectoryIndex index.php index.html
    ```
 
-   Once the configration options are added, click the OK button at the bottom
+   Once you have added these configuration options, click the OK button at the bottom
 of the page to save it.
 
 7. Configure FastCGI: Now that Apache is set up for FastCGI, we need to configure a FastCGI handler
@@ -84,7 +84,7 @@ default path for the webroot was chosen) with the following contents:
    <?php phpinfo(); ?>
    ```
 
-   And visit the virtual host you setup. You should see the PHP info page. If you do, you are running PHP via RPM on your IBM i. 
+   And visit the virtual host you set up. You should see the PHP info page. If you do, you are running PHP via RPM on your IBM i. 
 
 9. Recommended Additional Configuration Options For Apache, Speed, and a Common Issue: While your mileage may vary, I recommend these additional lines for your consideration in your Apache config to speed up your app. 
 
@@ -105,7 +105,7 @@ default path for the webroot was chosen) with the following contents:
 
 # Example ODBC Connection To DB2 On IBM i
 
-These are some example connection strings and directions to help people connect via ODBC to DB2 on the IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on the IBM i. 
+These are some example connection strings and directions to help people connect via ODBC to DB2 on IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on IBM i. 
 
 ## IBM Connection String Reference
 
@@ -115,11 +115,11 @@ This is the collection of options to help you buid your ODBC string.
 
 ## Connecting A PHP Application Running On IBM i To A DB2 Database Running On IBM i 
 
-This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PHP is running on the IBM i. This will NOT work by default with Zend Server PHP. They do not include the ODBC extension needed. You either need to add the extension or run and install the PHP RPMs listed above. From a runtime perspective using ODBC there is no difference between the two Zend Server has some nice debugging tools and a set way to deploy applications, and some extensions are not available (intl and zip) via the RPMs. Otherwise most shops should just consider the PHP RPMs.
+This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PHP is running on IBM i. This will NOT work by default with Zend Server PHP as they do not include the necessary ODBC extension. You must either add the extension or run and install the PHP RPMs listed above. From a runtime perspective using ODBC there is no difference between the two. Zend Server has some nice debugging tools and a set way to deploy applications, and some extensions are not available (intl and zip) via the RPMs. Otherwise most shops should consider just running the PHP RPMs.
 
 While the IBM i OS has a built in ODBC server to accept connections by default, it does not have an ODBC client driver installed by default. You will need to download the [PASE IBM i ODBC](https://www.ibm.com/support/pages/odbc-driver-ibm-i-pase-environment){:target="_blank" rel="noopener"} driver and install. 
 
-Within the directions it will mention setting up a DSN within odbc.ini or the user odbc.ini. You can either set up your database connections this way or create the string to connect like below. I prefer to create the the string as it is easier for me to manage and see what user is used for what. 
+The directions will mention setting up a DSN within odbc.ini or the user odbc.ini. You can either set up your database connections this way or configure your odbc connection via a string as shown below. This approach allows you to track your connection configuration in your git repository.
 
 ```
 <?php
@@ -145,7 +145,7 @@ return array (
 
 ## Connecting A PHP Application Running On Linux / Windows To A DB2 Database Running On IBM i 
 
-As PHP can run on multiple OSes, it can be beneficial in some circumstances to run PHP on another server and use the IBM i just for its DB2 database and Business Intelligence (for example, calling RPG via the PHP Toolkit). 
+As PHP can run on multiple OSes, it can be beneficial in some circumstances to run PHP on another server and use IBM i just for its DB2 database and business logic (for example, calling RPG via the PHP Toolkit). 
 
 ```
 <?php
@@ -170,7 +170,7 @@ return array (
 
 ## Calling RPG via The PHP Toolkit Over PDO ODBC When PHP Runs On Linux / Windows
 
-It is possible to call RPG from another server over ODBC. This uses your PDO connection referenced above. Below is the code from my application running in Zend Framework. Notice on instantiation of the toolkit (the new Toolkit line) I am passing the current database connection, and the fourth parameter is 'pdo'. This is allowing the Toolkit to use our current resources over the PDO object over ODBC to call RPG on the IBM i (yes this is ridiculously cool). 
+It is possible to call RPG from another server over ODBC. This uses your PDO connection referenced above. Below is the code from my application running in Zend Framework. Notice on instantiation of the toolkit (the new Toolkit line) I am passing the current database connection, and the fourth parameter is 'pdo'. This is allowing the Toolkit to use our current connection resource from the PDO object over ODBC to call RPG on the IBM i (yes this is ridiculously cool). 
 
 [IBM i PHP Toolkit Repo](https://github.com/zendtech/IbmiToolkit){:target="_blank" rel="noopener"}
 
@@ -188,21 +188,16 @@ class ToolkitFactory implements FactoryInterface
 
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null )
     {    
+            /** @var \Zend\Db\Adapter\Adapter $databaseAdapter
+            $databaseAdapter = $container->get('Zend\Db\Adapter\Adapter');
 
-            $dbAdapter = $container->get('ToolkitAdapter');
-
-            $dbConn = $dbAdapter->getDriver()->getConnection()->getResource();
+            $databaseConnection = $databaseAdapter->getDriver()->getConnection()->getResource();
      
-            $tkConn = new Toolkit($dbConn, null, null, 'pdo');
-
-            $tkConn->setOptions(array('stateless' => true, 'XMLServiceLib' => 'QXMLSERV'));
-
-            return $tkConn;
+            return new Toolkit($dbConn, null, null, 'pdo');
         }
-
     }
 }
 ```
 
-Here is the current docs with [Toolkit Examples](https://docs.roguewave.com/en/zend/Zend-Server-7-IBMi/content/toolkit_sample_scripts.htm){:target="_blank" rel="noopener"}
+Here is the current documentation with [Toolkit Examples](https://docs.roguewave.com/en/zend/Zend-Server-7-IBMi/content/toolkit_sample_scripts.htm){:target="_blank" rel="noopener"}
 
