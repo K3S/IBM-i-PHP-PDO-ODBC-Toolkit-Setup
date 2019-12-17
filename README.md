@@ -18,9 +18,9 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
    **NOTE: If you attempt to add the repo listed for PHP it will not find it. It is in a sub directory. As of now (12/12/2019) you want to use this command from the command line:
 
-```
- yum-config-manager --add-repo http://repos.zend.com/ibmiphp/ppc64/
-```
+   ```
+    yum-config-manager --add-repo http://repos.zend.com/ibmiphp/ppc64/
+   ```
 
    As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
 
@@ -38,18 +38,18 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
    Once you have created the Apache, use the "Edit Configuration File" option on the
 left panel to add the following configuration options near the top:
 
-```
-# This loads the Apache FastCGI support originally created for Zend
-LoadModule zend_enabler_module /QSYS.LIB/QHTTPSVR.LIB/QZFAST.SRVPGM
+   ```
+   # This loads the Apache FastCGI support originally created for Zend
+   LoadModule zend_enabler_module /QSYS.LIB/QHTTPSVR.LIB/QZFAST.SRVPGM
 
-# This tells Apache that any file with a .php extension should be
-# executed by the FastCGI application/x-httpd-php handler
-AddType application/x-httpd-php .php
-AddHandler fastcgi-script .php
+   # This tells Apache that any file with a .php extension should be
+   # executed by the FastCGI application/x-httpd-php handler
+   AddType application/x-httpd-php .php
+   AddHandler fastcgi-script .php
 
-# Let's you go to http://example.com instead of http://example.com/index.php
-DirectoryIndex index.php index.html
-```
+   # Let's you go to http://example.com instead of http://example.com/index.php
+   DirectoryIndex index.php index.html
+   ```
 
    Once the configration options are added, click the OK button at the bottom
 of the page to save it.
