@@ -18,7 +18,7 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
    **NOTE: If you attempt to add the repo listed for PHP it will not find it. It is in a sub directory. As of now (12/12/2019) you want to use this command from the command line:
 
-   ```
+```
  yum-config-manager --add-repo http://repos.zend.com/ibmiphp/ppc64/
 ```
 
@@ -38,7 +38,7 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
    Once you have created the Apache, use the "Edit Configuration File" option on the
 left panel to add the following configuration options near the top:
 
-   ```apacheconf
+```
 # This loads the Apache FastCGI support originally created for Zend
 LoadModule zend_enabler_module /QSYS.LIB/QHTTPSVR.LIB/QZFAST.SRVPGM
 
@@ -61,7 +61,7 @@ and the PHP script will merely be downloaded by the web browser.
    Create a file called fastcgi.conf in `/www/<server name>/conf` (assuming the
 defaul path for the webroot was chosen) with the following contents:
 
-   ```
+```
 Server type="application/x-httpd-php" CommandLine="/QOpenSys/pkgs/bin/php-cgi" StartProcesses="1"
 ```
 
@@ -69,7 +69,7 @@ Server type="application/x-httpd-php" CommandLine="/QOpenSys/pkgs/bin/php-cgi" S
 
 8. Test: Create a small index.php file in your webroot with the following code:
 
-   ```
+```
 <?php phpinfo(); ?>
 ```
 
