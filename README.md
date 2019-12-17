@@ -24,8 +24,12 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
    As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
 
-4.	Configuring PHP: php is configured in this file `/QOpenSys/etc/php.ini`
+4.	Configuring PHP: Mostly you will use the defaults already setup, but you can configure PHP now to fit your environment. 
+
+   PHP is configured in this file `/QOpenSys/etc/php.ini`   
    Extensions are added via this directory: `/QOpenSys/etc/php/conf.d`
+
+   Visit [PHP.net](https://php.net) to learn about configuration options. 
 
    Default versions of configurations and all the extensions are added when you add the RPMs. 
 
@@ -61,36 +65,36 @@ and the PHP script will merely be downloaded by the web browser.
    Create a file called fastcgi.conf in `/www/<server name>/conf` (assuming the
 defaul path for the webroot was chosen) with the following contents:
 
-```
-Server type="application/x-httpd-php" CommandLine="/QOpenSys/pkgs/bin/php-cgi" StartProcesses="1"
-```
+   ```
+   Server type="application/x-httpd-php" CommandLine="/QOpenSys/pkgs/bin/php-cgi" StartProcesses="1"
+   ```
 
    You can now start the web server.
 
 8. Test: Create a small index.php file in your webroot with the following code:
 
-```
-<?php phpinfo(); ?>
-```
+   ```
+   <?php phpinfo(); ?>
+   ```
 
    And visit the virtual host you setup. You should see the PHP info page. If you do, you are running PHP via RPM on your IBM i. 
 
 9. Recommended Additional Configuration Options For Apache, Speed, and a Common Issue: While your mileage may vary, I recommend these additional lines for your consideration in your Apache config to speed up your app. 
 
-```
-// These lines will add gzip compression to the data served. You want these near the top
-LoadModule deflate_module /QSYS.LIB/QHTTPSVR.LIB/QZSRCORE.SRVPGM
-AddOutputFilterByType DEFLATE application/x-httpd-php application/json text/css application/x-javascript application/javascript text/html
+   ```
+   // These lines will add gzip compression to the data served. You want these near the top
+   LoadModule deflate_module /QSYS.LIB/QHTTPSVR.LIB/QZSRCORE.SRVPGM
+   AddOutputFilterByType DEFLATE application/x-httpd-php application/json text/css application/x-javascript application/javascript text/html
 
-// This will turn on Keep Alive and allow users to reuse older connections, making the serving of data faster. 
-TimeOut 30000
-KeepAliveTimeout 30
-HotBackup Off
+   // This will turn on Keep Alive and allow users to reuse older connections, making the serving of data faster. 
+   TimeOut 30000
+   KeepAliveTimeout 30
+   HotBackup Off
 
-// If your code looks funky or just run a lot of times it is your CCSID. This seems to help
-DefaultFsCCSID 37
-CGIJobCCSID 37
-```
+   // If your code looks funky or just run a lot of times it is your CCSID. This seems to help
+   DefaultFsCCSID 37
+   CGIJobCCSID 37
+   ```
 
 # Example ODBC Connection To DB2 On IBM i
 
