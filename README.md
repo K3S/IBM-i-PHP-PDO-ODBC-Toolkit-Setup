@@ -70,7 +70,7 @@ for application/x-httpd-php. Without this, the FastCGI processor won't work
 and the PHP script will merely be downloaded by the web browser.
 
    Create a file called fastcgi.conf in `/www/<server name>/conf` (assuming the
-defaul path for the webroot was chosen) with the following contents:
+default path for the webroot was chosen) with the following contents:
 
    ```
    Server type="application/x-httpd-php" CommandLine="/QOpenSys/pkgs/bin/php-cgi" StartProcesses="1"
