@@ -12,15 +12,15 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
 2.	Install yum utilities: From the OSPM install yum-utils from the Available Packages tab. This will allow you to add 3rd party packages. 
 
-3. Install PHP RPMs: From a shell command line (I recommend SSHing in to the server, but I believe you can use QSH) install the repo to PHP RPMs hosted by Zend. 
+3. Install PHP RPMs: From a shell command line (I recommend SSHing in to the server, but I believe you can use QSH) install the repo to PHP RPMs hosted by Zend. Here is a list of 3rd Party RPMs (make sure you read the note below before you add PHP)
+
+[3rd Party Open Source Repos for IBM i](https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md){:target="_blank" rel="noopener"}
 
 **NOTE: If you attempt to add the repo listed for PHP it will not find it. It is in a sub directory. As of now (12/12/2019) you want to use this command from the command line:
 
 ```
  yum-config-manager --add-repo http://repos.zend.com/ibmiphp/ppc64/
 ```
-
-[3rd Party Open Source Repos for IBM i](https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md){:target="_blank" rel="noopener"}
 
 As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
 
