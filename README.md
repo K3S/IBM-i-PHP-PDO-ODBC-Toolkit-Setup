@@ -42,7 +42,7 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
    
    Updates to RPMs: When there are updates shipped to the RPMs and the config files there is a good system to not get rid of your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the newer default ones to the same directory with this naming scheme: _filename_.rpmnew
 
-5. Create New Apache Instance On IBM i: 
+5. Create New Apache Instance On IBM i: Visit http://ibmiipaddress:2001/HTTPAdmin on your server where you replace ibmiipaddress with the IP address of your IBM server (note that the [Admin Server](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rzaie/rzaiemngsrvr.htm) must be running). Click 'Create HTTP Server' in the top left hand corner, and go through the steps of adding a new Apache server. Note the webroot folders if you adjust from defaults. 
 
 6. Setup Aache To Run PHP:
 
