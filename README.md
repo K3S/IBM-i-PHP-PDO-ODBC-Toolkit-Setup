@@ -16,7 +16,7 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
    [3rd Party Open Source Repos for IBM i](https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md){:target="_blank" rel="noopener"}
 
-   **NOTE: If you attempt to add the repo listed for PHP it will not find it. It is in a sub directory. As of now (12/12/2019) you want to use this command from the command line:
+   **NOTE: If you attempt to add the repo listed for PHP it will not find it. It is in a sub directory. As of now (12/12/2019) you want to use this command from the command line:**
 
    ```
     yum-config-manager --add-repo http://repos.zend.com/ibmiphp/ppc64/
