@@ -2,7 +2,7 @@
 
 I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. Lots of this info is copy and pasted and I do not represent it as my own, only that I have aggregated it into one place to make it easier to use (there were many different sources for all this). 
 
-Notably thank you to Chuk Shirley, [Stephanie Rabinni](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, Dave Dressler, and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
+Notably thank you to [Chuk Shirley](https://github.com/chukShirley){:target="_blank" rel="noopener"}, [Stephanie Rabinni](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, [Dave Dressler](https://godzillai5.wordpress.com/){:target="_blank" rel="noopener"}, and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
 
 # Installing PHP RPM on IBM i
 
