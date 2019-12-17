@@ -75,6 +75,23 @@ You can now start the web server.
 
 And visit the virtual host you setup. You should see the PHP info page. If you do, you are running PHP via RPM on your IBM i. 
 
+9. Recommended Additional Configuration Options For Apache, Speed, and a Common Issue: While your mileage may vary, I recommend these additional lines for your consideration in your Apache config to speed up your app. 
+
+```
+// These lines will add gzip compression to the data served. You want these near the top
+LoadModule deflate_module /QSYS.LIB/QHTTPSVR.LIB/QZSRCORE.SRVPGM
+AddOutputFilterByType DEFLATE application/x-httpd-php application/json text/css application/x-javascript application/javascript text/html
+
+// This will turn on Keep Alive and allow users to reuse older connections, making the serving of data faster. 
+TimeOut 30000
+KeepAliveTimeout 30
+HotBackup Off
+
+// If your code looks funky or just run a lot of times it is your CCSID. This seems to help
+DefaultFsCCSID 37
+CGIJobCCSID 37
+```
+
 # Example ODBC Connection To DB2 On IBM i
 
 These are some example connection strings and directions to help people connect via ODBC to DB2 on the IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on the IBM i. 
