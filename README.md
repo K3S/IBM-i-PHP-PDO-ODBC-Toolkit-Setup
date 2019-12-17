@@ -31,10 +31,6 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
    /QOpenSys/etc/php.ini
    ```
 
-4.	Blah
-
-   
-   
    Extensions are added via this directory: 
    ```
    /QOpenSys/etc/php/conf.d
@@ -45,6 +41,12 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
    Default versions of configurations and all the extensions are added when you add the RPMs.
    
    Updates to RPMs: When there are updates shipped to the RPMs and the config files there is a good system to not get rid of your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the newer default ones to the same directory with this naming scheme: _filename_.rpmnew
+
+4.	Blah
+
+   
+   
+   
 
 5. Create New Apache Instance On IBM i: 
 
