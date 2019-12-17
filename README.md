@@ -36,13 +36,13 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
    /QOpenSys/etc/php/conf.d
    ```
    
-   Visit [PHP.net](https://php.net) to learn about configuration options. 
+   Visit [PHP.net](https://php.net){:target="_blank" rel="noopener"} to learn about configuration options. 
    
    Default versions of configurations and all the extensions are added when you add the RPMs.
    
    Updates to RPMs: When there are updates shipped to the RPMs and the config files there is a good system to not get rid of your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the newer default ones to the same directory with this naming scheme: _filename_.rpmnew
 
-5. Create New Apache Instance On IBM i: Visit http://ibmiipaddress:2001/HTTPAdmin on your server where you replace ibmiipaddress with the IP address of your IBM server (note that the [Admin Server](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rzaie/rzaiemngsrvr.htm) must be running). Click 'Create HTTP Server' in the top left hand corner, and go through the steps of adding a new Apache server. Note the webroot folders if you adjust from defaults. 
+5. Create New Apache Instance On IBM i: Visit http://ibmiipaddress:2001/HTTPAdmin on your server where you replace ibmiipaddress with the IP address of your IBM server (note that the [Admin Server](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rzaie/rzaiemngsrvr.htm){:target="_blank" rel="noopener"} must be running). Click 'Create HTTP Server' in the top left hand corner, and go through the steps of adding a new Apache server. Note the webroot folders if you adjust from defaults. 
 
 6. Setup Aache To Run PHP:
 
@@ -117,7 +117,7 @@ This is the collection of options to help you buid your ODBC string.
 
 This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PHP is running on the IBM i. This will NOT work by default with Zend Server PHP. They do not include the ODBC extension needed. You either need to add the extension or run and install the PHP RPMs listed above. From a runtime perspective using ODBC there is no difference between the two Zend Server has some nice debugging tools and a set way to deploy applications, but otherwise is unneeded by most shops. 
 
-While the IBM i OS has a built in ODBC server to accept connections by default, it does not have an ODBC client driver installed by default. You will need to download the [PASE IBM i ODBC](https://www.ibm.com/support/pages/odbc-driver-ibm-i-pase-environment) driver and install. 
+While the IBM i OS has a built in ODBC server to accept connections by default, it does not have an ODBC client driver installed by default. You will need to download the [PASE IBM i ODBC](https://www.ibm.com/support/pages/odbc-driver-ibm-i-pase-environment){:target="_blank" rel="noopener"} driver and install. 
 
 Within the directions it will mention setting up a DSN within odbc.ini or the user odbc.ini. You can either set up your database connections this way or create the string to connect like below. I prefer to create the the string as it is easier for me to manage and see what user is used for what. 
 
@@ -172,7 +172,7 @@ return array (
 
 It is possible to call RPG from another server over ODBC. This uses your PDO connection referenced above. Below is the code from my application running in Zend Framework. Notice on instantiation of the toolkit (the new Toolkit line) I am passing the current database connection, and the fourth parameter is 'pdo'. This is allowing the Toolkit to use our current resources over the PDO object over ODBC to call RPG on the IBM i (yes this is ridiculously cool). 
 
-[IBM i PHP Toolkit](https://github.com/zendtech/IbmiToolkit){:target="_blank" rel="noopener"}
+[IBM i PHP Toolkit Repo](https://github.com/zendtech/IbmiToolkit){:target="_blank" rel="noopener"}
 
 ```
 <?php
@@ -204,5 +204,5 @@ class ToolkitFactory implements FactoryInterface
 }
 ```
 
-Here is the current docs with [Toolkit Examples](https://docs.roguewave.com/en/zend/Zend-Server-7-IBMi/content/toolkit_sample_scripts.htm)
+Here is the current docs with [Toolkit Examples](https://docs.roguewave.com/en/zend/Zend-Server-7-IBMi/content/toolkit_sample_scripts.htm){:target="_blank" rel="noopener"}
 
