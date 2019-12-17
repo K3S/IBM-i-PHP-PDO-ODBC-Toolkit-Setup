@@ -27,6 +27,7 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 4.	Configuring PHP: Mostly you will use the defaults already setup, but you can configure PHP now to fit your environment. 
 
    PHP is configured in this file `/QOpenSys/etc/php.ini`   
+   
    Extensions are added via this directory: `/QOpenSys/etc/php/conf.d`
 
    Visit [PHP.net](https://php.net) to learn about configuration options. 
