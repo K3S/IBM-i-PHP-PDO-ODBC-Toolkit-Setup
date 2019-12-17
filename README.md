@@ -2,6 +2,8 @@
 
 I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. Lots of this info is copy and pasted and I do not represent it as my own, only that I have aggregated it into one place to make it easier to use (there were many different sources for all this). 
 
+Notably thank you to Chuk Shirley, [Stephanie Rabinni](https://twitter.com/jordiwes), [Alan Seiden](https://twitter.com/alanseiden), Dave Dressler, and [Kevin Adler](https://twitter.com/kadler_ibm). 
+
 # Installing PHP RPM on IBM i
 
 This is a guide on how to install the PHP RPMs from Zend. This is the community edition you can use as any normal open source software. The ODBC extension is not installed with the normal Zend Server version of PHP, so if you want to use ODBC with PHP you are going to need to install the RPMs. 
