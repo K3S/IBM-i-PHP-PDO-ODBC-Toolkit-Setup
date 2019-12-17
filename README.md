@@ -24,7 +24,7 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
    As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
 
-4.	Configuring PHP: Mostly you will use the defaults already setup, but you can configure PHP now to fit your environment.
+4.	Configuring PHP: Mostly you will use the defaults already setup, but you can configure PHP now to fit your environment
 
    PHP is configured in this file: /QOpenSys/etc/php.ini Extensions are added via this directory: /QOpenSys/etc/php/conf.d Visit [PHP.net](https://php.net) to learn about configuration options. Default versions of configurations and all the extensions are added when you add the RPMs. Updates to RPMs: When there are updates shipped to the RPMs and the config files there is a good system to not get rid of your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the newer default ones to the same directory with this naming scheme: _filename_.rpmnew
 
