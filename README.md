@@ -6,7 +6,7 @@ Notably thank you to Chuk Shirley, [Stephanie Rabinni](https://twitter.com/jordi
 
 # Installing PHP RPM on IBM i
 
-This is a guide on how to install the PHP RPMs from Zend. This is the community edition you can use as any normal open source software. The ODBC extension is not installed with the normal Zend Server version of PHP, so if you want to use ODBC with PHP you are going to need to install the RPMs. Zend Server and PHP RPMs are pragmatically no different from a run time perspective. Most of the advantage in Zend Server is in the development, going through logging, and they have a custom package management. As well the intl, zip, phpdbg, rpath, and dependency-tracking extensions are not available via the RPMs. Otherwise most shops should just consider the PHP RPMs. 
+This is a guide on how to install the PHP RPMs from Zend. This is the community edition you can use as any normal open source software. The ODBC extension is not installed with the normal Zend Server version of PHP, so if you want to use ODBC with PHP you are going to need to install the RPMs. Zend Server and PHP RPMs are pragmatically no different from a run time perspective. Most of the advantage in Zend Server is in the development, going through logging, and they have a custom package management. As well the intl and zip extensions are not available via the RPMs. Otherwise most shops should just consider the PHP RPMs. 
 
 1.	Setup Package Manager: Make sure the you have installed the Open Source Package Management (OSPM) from ACS [Getting started with Open Source Package Management in IBM i ACS](https://www.ibm.com/support/pages/getting-started-open-source-package-management-ibm-i-acs){:target="_blank" rel="noopener"}
 
@@ -115,7 +115,7 @@ This is the collection of options to help you buid your ODBC string.
 
 ## Connecting A PHP Application Running On IBM i To A DB2 Database Running On IBM i 
 
-This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PHP is running on the IBM i. This will NOT work by default with Zend Server PHP. They do not include the ODBC extension needed. You either need to add the extension or run and install the PHP RPMs listed above. From a runtime perspective using ODBC there is no difference between the two Zend Server has some nice debugging tools and a set way to deploy applications, and some extensions are not available (intl, zip, phpdbg, rpath, and dependency-tracking) via the RPMs. Otherwise most shops should just consider the PHP RPMs.
+This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PHP is running on the IBM i. This will NOT work by default with Zend Server PHP. They do not include the ODBC extension needed. You either need to add the extension or run and install the PHP RPMs listed above. From a runtime perspective using ODBC there is no difference between the two Zend Server has some nice debugging tools and a set way to deploy applications, and some extensions are not available (intl and zip) via the RPMs. Otherwise most shops should just consider the PHP RPMs.
 
 While the IBM i OS has a built in ODBC server to accept connections by default, it does not have an ODBC client driver installed by default. You will need to download the [PASE IBM i ODBC](https://www.ibm.com/support/pages/odbc-driver-ibm-i-pase-environment){:target="_blank" rel="noopener"} driver and install. 
 
