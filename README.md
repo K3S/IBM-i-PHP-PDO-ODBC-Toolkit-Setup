@@ -2,11 +2,11 @@
 
 I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. Lots of this info is copy and pasted and I do not represent it as my own, only that I have aggregated it into one place to make it easier to use (there were many different sources for all this). 
 
-Notably thank you to Chuk Shirley, [Stephanie Rabinni](https://twitter.com/jordiwes), [Alan Seiden](https://twitter.com/alanseiden), Dave Dressler, and [Kevin Adler](https://twitter.com/kadler_ibm). 
+Notably thank you to Chuk Shirley, [Stephanie Rabinni](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, Dave Dressler, and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
 
 # Installing PHP RPM on IBM i
 
-This is a guide on how to install the PHP RPMs from Zend. This is the community edition you can use as any normal open source software. The ODBC extension is not installed with the normal Zend Server version of PHP, so if you want to use ODBC with PHP you are going to need to install the RPMs. 
+This is a guide on how to install the PHP RPMs from Zend. This is the community edition you can use as any normal open source software. The ODBC extension is not installed with the normal Zend Server version of PHP, so if you want to use ODBC with PHP you are going to need to install the RPMs. Zend Server and PHP RPMs are pragmatically no different from a run time perspective. Most of the advantage in Zend Server is in the development, going through logging, and they have a custom package management. Otherwise most shops should just consider the PHP RPMs. 
 
 1.	Setup Package Manager: Make sure the you have installed the Open Source Package Management (OSPM) from ACS [Getting started with Open Source Package Management in IBM i ACS](https://www.ibm.com/support/pages/getting-started-open-source-package-management-ibm-i-acs){:target="_blank" rel="noopener"}
 
@@ -20,7 +20,7 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
  yum-config-manager --add-repo http://repos.zend.com/ibmiphp/ppc64/
 ```
 
-(3rd Party Open Source Repos for IBM i)[https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md]{:target="_blank" rel="noopener"}
+[3rd Party Open Source Repos for IBM i](https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md){:target="_blank" rel="noopener"}
 
 As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
 
@@ -67,6 +67,14 @@ Server type="application/x-httpd-php" CommandLine="/QOpenSys/pkgs/bin/php-cgi" S
 
 You can now start the web server.
 
+8. Test: Create a small index.php file in your webroot with the following code:
+
+```
+<?php phpinfo(); ?>
+```
+
+And visit the virtual host you setup. You should see the PHP info page. If you do, you are running PHP via RPM on your IBM i. 
+
 # Example ODBC Connection To DB2 On IBM i
 
 These are some example connection strings and directions to help people connect via ODBC to DB2 on the IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on the IBM i. 
@@ -77,7 +85,7 @@ These are some example connection strings and directions to help people connect 
 
 ## Connecting A PHP Application Running On IBM i To A DB2 Database Running On IBM i 
 
-This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PHP is running on the IBM i.
+This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PHP is running on the IBM i. This will NOT work by default with Zend Server PHP. They do not include the ODBC extension needed. You either need to add the extension or run and install the PHP RPMs listed above. From a runtime perspective using ODBC there is no difference between the two Zend Server has some nice debugging tools and a set way to deploy applications, but otherwise is unneeded by most shops. 
 
 ```
 <?php
