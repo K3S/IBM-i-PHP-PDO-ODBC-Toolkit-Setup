@@ -18,27 +18,27 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
    **NOTE: If you attempt to add the repo listed for PHP it will not find it. It is in a sub directory. As of now (12/12/2019) you want to use this command from the command line:
 
-```
+   ```
  yum-config-manager --add-repo http://repos.zend.com/ibmiphp/ppc64/
 ```
 
    As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
 
 4.	Configuring PHP: php is configured in this file `/QOpenSys/etc/php.ini`
-Extensions are added via this directory: `/QOpenSys/etc/php/conf.d`
+   Extensions are added via this directory: `/QOpenSys/etc/php/conf.d`
 
-Default versions of configurations and all the extensions are added when you add the RPMs. 
+   Default versions of configurations and all the extensions are added when you add the RPMs. 
 
-Updates to RPMs: When there are updates shipped to the RPMs and the config files there is a good system to not get rid of your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the newer default ones to the same directory with this naming scheme: _filename_.rpmnew
+   Updates to RPMs: When there are updates shipped to the RPMs and the config files there is a good system to not get rid of your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the newer default ones to the same directory with this naming scheme: _filename_.rpmnew
 
 5. Create New Apache Instance On IBM i: 
 
 6. Setup Aache To Run PHP:
 
-Once you have created the Apache, use the "Edit Configuration File" option on the
+   Once you have created the Apache, use the "Edit Configuration File" option on the
 left panel to add the following configuration options near the top:
 
-```apacheconf
+   ```apacheconf
 # This loads the Apache FastCGI support originally created for Zend
 LoadModule zend_enabler_module /QSYS.LIB/QHTTPSVR.LIB/QZFAST.SRVPGM
 
@@ -51,29 +51,29 @@ AddHandler fastcgi-script .php
 DirectoryIndex index.php index.html
 ```
 
-Once the configration options are added, click the OK button at the bottom
+   Once the configration options are added, click the OK button at the bottom
 of the page to save it.
 
 7. Configure FastCGI: Now that Apache is set up for FastCGI, we need to configure a FastCGI handler
 for application/x-httpd-php. Without this, the FastCGI processor won't work
 and the PHP script will merely be downloaded by the web browser.
 
-Create a file called fastcgi.conf in `/www/<server name>/conf` (assuming the
+   Create a file called fastcgi.conf in `/www/<server name>/conf` (assuming the
 defaul path for the webroot was chosen) with the following contents:
 
-```
+   ```
 Server type="application/x-httpd-php" CommandLine="/QOpenSys/pkgs/bin/php-cgi" StartProcesses="1"
 ```
 
-You can now start the web server.
+   You can now start the web server.
 
 8. Test: Create a small index.php file in your webroot with the following code:
 
-```
+   ```
 <?php phpinfo(); ?>
 ```
 
-And visit the virtual host you setup. You should see the PHP info page. If you do, you are running PHP via RPM on your IBM i. 
+   And visit the virtual host you setup. You should see the PHP info page. If you do, you are running PHP via RPM on your IBM i. 
 
 9. Recommended Additional Configuration Options For Apache, Speed, and a Common Issue: While your mileage may vary, I recommend these additional lines for your consideration in your Apache config to speed up your app. 
 
