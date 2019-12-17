@@ -98,7 +98,7 @@ defaul path for the webroot was chosen) with the following contents:
    KeepAliveTimeout 30
    HotBackup Off
 
-   // If your code looks funky or just run a lot of times it is your CCSID. This seems to help
+   // If your code looks funky a lot of times it is your CCSID. This seems to help
    DefaultFsCCSID 37
    CGIJobCCSID 37
    ```
@@ -109,11 +109,17 @@ These are some example connection strings and directions to help people connect 
 
 ## IBM Connection String Reference
 
+This is the collection of options to help you buid your ODBC string. 
+
 [IBM ODBC Connection String Keywords](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_74/rzaik/connectkeywords.htm){:target="_blank" rel="noopener"}
 
 ## Connecting A PHP Application Running On IBM i To A DB2 Database Running On IBM i 
 
 This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PHP is running on the IBM i. This will NOT work by default with Zend Server PHP. They do not include the ODBC extension needed. You either need to add the extension or run and install the PHP RPMs listed above. From a runtime perspective using ODBC there is no difference between the two Zend Server has some nice debugging tools and a set way to deploy applications, but otherwise is unneeded by most shops. 
+
+While the IBM i OS has a built in ODBC server to accept connections by default, it does not have an ODBC client driver installed by default. You will need to download the [PASE IBM i ODBC](https://www.ibm.com/support/pages/odbc-driver-ibm-i-pase-environment) driver and install. 
+
+Within the directions it will mention setting up a DSN within odbc.ini or the user odbc.ini. You can either set up your database connections this way or create the string to connect like below. I prefer to create the the string as it is easier for me to manage and see what user is used for what. 
 
 ```
 <?php
