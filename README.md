@@ -42,9 +42,11 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
    
    Updates to RPMs: If you have made changes to the configuration files, subsequent RPM updates will preserve your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the new default ones to the same directory with this naming scheme: _filename_.rpmnew
 
-5. Create New Apache Instance On IBM i: Visit http://ibmiipaddress:2001/HTTPAdmin on your server where you replace ibmiipaddress with the IP address of your IBM server (note that the [Admin Server](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rzaie/rzaiemngsrvr.htm){:target="_blank" rel="noopener"} must be running). Click 'Create HTTP Server' in the top left hand corner, and go through the steps of adding a new Apache server. Note the webroot folders if you adjust from defaults. 
+# Setup Apache to Run PHP
 
-6. Set Up Aache To Run PHP:
+1. Create New Apache Instance On IBM i: Visit http://ibmiipaddress:2001/HTTPAdmin on your server where you replace ibmiipaddress with the IP address of your IBM server (note that the [Admin Server](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rzaie/rzaiemngsrvr.htm){:target="_blank" rel="noopener"} must be running). Click 'Create HTTP Server' in the top left hand corner, and go through the steps of adding a new Apache server. Note the webroot folders if you adjust from defaults. 
+
+2. Set Up Aache To Run PHP:
 
    Once you have created the Apache instance, use the "Edit Configuration File" option on the
 left panel to add the following configuration options near the top:
@@ -65,7 +67,7 @@ left panel to add the following configuration options near the top:
    Once you have added these configuration options, click the OK button at the bottom
 of the page to save it.
 
-7. Configure FastCGI: Now that Apache is set up for FastCGI, we need to configure a FastCGI handler
+3. Configure FastCGI: Now that Apache is set up for FastCGI, we need to configure a FastCGI handler
 for application/x-httpd-php. Without this, the FastCGI processor won't work
 and the PHP script will merely be downloaded by the web browser.
 
@@ -78,7 +80,7 @@ default path for the webroot was chosen) with the following contents:
 
    You can now start the web server.
 
-8. Test: Create a small index.php file in your webroot with the following code:
+4. Test: Create a small index.php file in your webroot with the following code:
 
    ```
    <?php phpinfo(); ?>
@@ -86,7 +88,7 @@ default path for the webroot was chosen) with the following contents:
 
    And visit the virtual host you set up. You should see the PHP info page. If you do, you are running PHP via RPM on your IBM i. 
 
-9. Recommended Additional Configuration Options For Apache, Speed, and a Common Issue: While your mileage may vary, I recommend these additional lines for your consideration in your Apache config to speed up your app. 
+5. Recommended Additional Configuration Options For Apache, Speed, and a Common Issue: While your mileage may vary, I recommend these additional lines for your consideration in your Apache config to speed up your app. 
 
    ```
    // These lines will add gzip compression to the data served. You want these near the top
@@ -102,6 +104,136 @@ default path for the webroot was chosen) with the following contents:
    DefaultFsCCSID 37
    CGIJobCCSID 37
    ```
+
+# Setup NGINX To Run PHP
+
+## Configuring NGINX & FPM
+
+NGINX has built-in support for proxying requests to a FastCGI process, but it
+does not provide a built-in FastCGI process manager. For that, we will be using
+the standard PHP-FPM utility.
+
+NGINX has a good document on setting up WordPress in NGINX [here](https://www.nginx.com/resources/wiki/start/topics/recipes/wordpress/).
+Since WordPress is written in PHP, this can be used as the basis for setting up
+PHP with NGINX on IBM i.
+
+### Setting up NGINX
+
+First, we need to creat an NGINX configuration. Since there's no wizard for
+that, it needs to be done by hand. Create a configuration under
+`/QOpenSys/etc/nginx/` called php.conf (or whatever you want to call it).
+
+In this example, I'm going to mimic the file structure of an Apache webserver
+on IBM i:
+
+- /www/php: base root
+- /www/php/logs: logs directory
+- /www/php/htdocs: web server root
+
+
+```
+error_log  /www/php/logs/nginx.err.log;
+pid        /www/php/logs/nginx.pid;
+
+events {
+    # required section, just leave empty for defaults
+}
+
+http {
+    upstream php {
+        # this is the default FPM listen address
+        server 127.0.0.1:9000;
+    }
+
+    server {
+        # set your actual hostname here
+        server_name mywebserver.example.com;
+
+        # set your listen port and address here
+        listen 6090 default_server;
+
+        # document root for web server
+        root /www/php/htdocs;
+
+        # Let's you go to http://example.com instead of http://example.com/index.php
+        index index.php index.html;
+
+        location ~ \.php$ {
+            include /QOpenSys/etc/nginx/snippets/fastcgi-php.conf;
+
+            # proxy to the php upstream we defined earlier
+            fastcgi_pass php;
+        }
+    }
+}
+
+```
+
+We also need to create the php fastcgi snippet referenced above:
+
+*Note: This is only temporary as we plan to ship this snippet with NGINX in the
+future*
+
+```
+fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+# Check that the PHP script exists before passing it
+try_files $fastcgi_script_name =404;
+
+# Bypass the fact that try_files resets $fastcgi_path_info
+# see: http://trac.nginx.org/nginx/ticket/321
+set $path_info $fastcgi_path_info;
+fastcgi_param PATH_INFO $path_info;
+
+fastcgi_index index.php;
+include fastcgi.conf;
+```
+
+### Setting up FPM
+
+Now that NGINX is configured, we need to set up FPM. Luckily, FPM is mostly
+configured ok out of the box.
+
+The main FPM config file is located at `/QOpenSys/etc/php/php-fpm.conf`, which
+really just serves as a way to load `/QOpenSys/etc/php/php-fpm.d/www.conf`.
+
+Again, the defaults should suffice, but one thing that is tricky is that FPM
+wants to set a user *and* group to run under. The default user has been set
+to QTMHHTTP, but this user is not a member of any groups, which FPM detects
+as an error:
+
+```text
+[19-Jul-2019 13:27:35] ERROR: [pool www] please specify user and group other than root
+[19-Jul-2019 13:27:35] ERROR: FPM initialization failed
+```
+
+There are two options:
+
+1. Modify QTMHHTTP user to have a primary group, eg. `CHGUSRPRF USRPRF(QTMHHTTP) GRPPRF(GRP1)`
+2. Configure FPM in `/QOpenSys/etc/php/php-fpm.d/www.conf` to run under a given
+   user profile, eg. `group = grp1`
+
+
+### Starting Things Up
+
+Once everything is configured, you can start everything:
+
+- Start NGINX: `nginx -c php.conf`
+- Start FPM: `/QOpenSys/pkgs/sbin/php-fpm`
+
+Your NGINX server will be running under your user profile and FPM will
+be running under the user profile specified in the config.
+ 
+## Testing the Setup
+
+Finally, we need a PHP script to run. Create an index.php in the document root
+for the web server, eg. `/www/php/htdocs`:
+
+```php
+<?php
+echo phpinfo();
+?>
+```
 
 # Example ODBC Connection To DB2 On IBM i
 
