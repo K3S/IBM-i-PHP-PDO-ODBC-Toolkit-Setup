@@ -107,24 +107,19 @@ default path for the webroot was chosen) with the following contents:
 
 # Setup NGINX To Run PHP
 
-## Configuring NGINX & FPM
+## Notes on NGINX and PHP-FPM
 
-NGINX has built-in support for proxying requests to a FastCGI process, but it
-does not provide a built-in FastCGI process manager. For that, we will be using
-the standard PHP-FPM utility.
+NGINX has built-in support for proxying requests to a FastCGI process, but it does not provide a built-in FastCGI process manager. For that, we will be using the standard PHP-FPM utility.
 
-NGINX has a good document on setting up WordPress in NGINX [here](https://www.nginx.com/resources/wiki/start/topics/recipes/wordpress/).
-Since WordPress is written in PHP, this can be used as the basis for setting up
-PHP with NGINX on IBM i.
+NGINX has a good document on setting up [WordPress in NGINX](https://www.nginx.com/resources/wiki/start/topics/recipes/wordpress/). Since WordPress is written in PHP, this can be used as the basis for setting up PHP with NGINX on IBM i.
 
 ### Setting up NGINX
 
-First, we need to creat an NGINX configuration. Since there's no wizard for
-that, it needs to be done by hand. Create a configuration under
-`/QOpenSys/etc/nginx/` called php.conf (or whatever you want to call it).
+Install NGINX from the Open Source Package Manager. 
 
-In this example, I'm going to mimic the file structure of an Apache webserver
-on IBM i:
+We will then need to creat an NGINX configuration. As there is no wizard this will need to be done by hand. Create a configuration under `/QOpenSys/etc/nginx/` called php.conf
+
+In this example, we will mimic the file structure of an Apache webserver on IBM i:
 
 - /www/php: base root
 - /www/php/logs: logs directory
@@ -169,10 +164,7 @@ http {
 
 ```
 
-We also need to create the php fastcgi snippet referenced above:
-
-*Note: This is only temporary as we plan to ship this snippet with NGINX in the
-future*
+We also need to create the PHP FastCGI snippet referenced above:
 
 ```
 fastcgi_split_path_info ^(.+\.php)(/.+)$;
@@ -191,16 +183,11 @@ include fastcgi.conf;
 
 ### Setting up FPM
 
-Now that NGINX is configured, we need to set up FPM. Luckily, FPM is mostly
-configured ok out of the box.
+Now that NGINX is configured, we need to set up FPM. Luckily, FPM is mostly configured ok out of the box.
 
-The main FPM config file is located at `/QOpenSys/etc/php/php-fpm.conf`, which
-really just serves as a way to load `/QOpenSys/etc/php/php-fpm.d/www.conf`.
+The main FPM config file is located at `/QOpenSys/etc/php/php-fpm.conf`, which really just serves as a way to load `/QOpenSys/etc/php/php-fpm.d/www.conf`.
 
-Again, the defaults should suffice, but one thing that is tricky is that FPM
-wants to set a user *and* group to run under. The default user has been set
-to QTMHHTTP, but this user is not a member of any groups, which FPM detects
-as an error:
+Again, the defaults should suffice, but one thing that is tricky is that FPM wants to set a user *and* group to run under. The default user has been set to QTMHHTTP, but this user is not a member of any groups, which FPM detects as an error:
 
 ```text
 [19-Jul-2019 13:27:35] ERROR: [pool www] please specify user and group other than root
@@ -210,8 +197,7 @@ as an error:
 There are two options:
 
 1. Modify QTMHHTTP user to have a primary group, eg. `CHGUSRPRF USRPRF(QTMHHTTP) GRPPRF(GRP1)`
-2. Configure FPM in `/QOpenSys/etc/php/php-fpm.d/www.conf` to run under a given
-   user profile, eg. `group = grp1`
+2. Configure FPM in `/QOpenSys/etc/php/php-fpm.d/www.conf` to run under a given user profile, eg. `group = grp1`
 
 
 ### Starting Things Up
@@ -221,18 +207,15 @@ Once everything is configured, you can start everything:
 - Start NGINX: `nginx -c php.conf`
 - Start FPM: `/QOpenSys/pkgs/sbin/php-fpm`
 
-Your NGINX server will be running under your user profile and FPM will
-be running under the user profile specified in the config.
+Your NGINX server will be running under your user profile and FPM will be running under the user profile specified in the config.
  
 ## Testing the Setup
 
 Finally, we need a PHP script to run. Create an index.php in the document root
 for the web server, eg. `/www/php/htdocs`:
 
-```php
-<?php
-echo phpinfo();
-?>
+```
+<?php echo phpinfo(); ?>
 ```
 
 # Example ODBC Connection To DB2 On IBM i
