@@ -16,10 +16,8 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
    [3rd Party Open Source Repos for IBM i](https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md){:target="_blank" rel="noopener"}
 
-   **NOTE: If you attempt to add the repo listed for PHP it will not find it. It is in a sub directory. As of now (12/12/2019) you want to use this command from the command line:**
-
    ```
-    yum-config-manager --add-repo http://repos.zend.com/ibmiphp/ppc64/
+    yum-config-manager --add-repo http://repos.zend.com/ibmiphp/
    ```
 
    As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
@@ -316,3 +314,15 @@ class ToolkitFactory implements FactoryInterface
 
 Here is the current documentation with [Toolkit Examples](https://docs.roguewave.com/en/zend/Zend-Server-7-IBMi/content/toolkit_sample_scripts.htm){:target="_blank" rel="noopener"}
 
+## Need To Re-add the IBM i Repos
+
+The IBM i repos live here: http://public.dhe.ibm.com/software/ibmi/products/pase/rpms/repo
+
+To re-add them if you bork something:
+
+```
+    yum-config-manager --add-repo http://public.dhe.ibm.com/software/ibmi/products/pase/rpms/repo
+
+```
+
+This does take having the yum-config-manager already installed. If you do not have that already installed you might want to reach out to someone at IBM for help. 
