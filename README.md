@@ -4,6 +4,20 @@ I have created this guide as a reference for myself, but also to help others who
 
 Notably, thank you to [Chuk Shirley](https://github.com/chukShirley){:target="_blank" rel="noopener"}, [Stephanie Rabinni](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, [Dave Dressler](https://godzillai5.wordpress.com/){:target="_blank" rel="noopener"}, and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
 
+# Synopsis (What The Heck Does This All Mean??)
+
+[IBM i OS](https://en.wikipedia.org/wiki/IBM_i) on [IBM Power Systems](https://en.wikipedia.org/wiki/IBM_Power_Systems) hardware is an ABSOLUTELY amazing collection of technologies with true rock solid stability and features to help with enterprise level challenges. However, the perception of the platform (Usually referred to as [AS/400 or iSeries](https://en.wikipedia.org/wiki/IBM_System_i)) is that the technology is dated and not suited for the modern business environment.
+
+This is 100% innaccurate and not true, and mostly comes from the command line interface users would be expected to use ([IBM 5250](https://en.wikipedia.org/wiki/IBM_5250)) and/or some of the programming quirks that arise from being able to compile and run all code since its inception. 
+
+Instead there are options to leverage the IBM i OS to its absolute strength while employing modern techniques / interfaces so that users 
+
+Below I have written out instructions for 4 distinct scenarios:
+* Running PHP on your IBM i with Apache as the web server
+* Running PHP on your IBM i with NGINX as the web server
+* Running PHP on another server (Windows or Linux) but connecting back to your IBM i DB2 database
+* Calling RPG / CL programs on your IBM i from PHP running on another server (Windows or Linux)
+
 # Installing PHP RPM on IBM i
 
 This is a guide on how to install the PHP RPMs from Zend. This is the community edition you can use as any normal open source software. The ODBC extension is not installed with the normal Zend Server version of PHP, so if you want to use ODBC with PHP you are going to need to install the RPMs. Zend Server and PHP RPMs are pragmatically no different from a run time perspective. Most of the advantage in Zend Server is in the development, going through logging, and they have a custom package management. As well the intl and zip extensions are not available via the RPMs. Otherwise most shops should just consider the PHP RPMs. 
