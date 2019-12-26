@@ -1,3 +1,5 @@
+* TOC {:toc}
+
 # Purpose
 
 I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. Much of this info is copied and pasted, and I do not represent it as my own, only that I have aggregated it into one place for ease-of-use (there were many different sources for all of this). 
@@ -10,7 +12,9 @@ Notably, thank you to [Chuk Shirley](https://github.com/chukShirley){:target="_b
 
 This is 100% innaccurate and not true, and mostly comes from the command line interface users would be expected to use ([IBM 5250](https://en.wikipedia.org/wiki/IBM_5250)) and/or some of the programming quirks that arise from being able to compile and run all code since its inception. 
 
-Instead there are options to leverage the IBM i OS to its absolute strength while employing modern techniques / interfaces so that users 
+Instead there are options to leverage the IBM i OS to its absolute strength while employing modern techniques / interfaces so that users. 
+
+The power of [IBM RPG](https://en.wikipedia.org/wiki/IBM_RPG) is that it is write once, compile, and run on the platform 'forever'. No matter the 
 
 Below I have written out instructions for 4 distinct scenarios:
 * Running PHP on your IBM i with Apache as the web server
