@@ -242,13 +242,22 @@ for the web server, eg. `/www/php/htdocs`:
 
 # Example ODBC Connection To DB2 On IBM i
 
-These are some example connection strings and directions to help people connect via ODBC to DB2 on IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on IBM i. 
+These are some example connection strings and directions to help people connect via PDO / ODBC to DB2 on IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on IBM i. 
+
+## What is PDO and ODBC?
+
+PDO (PHP Database Object) is an abstracted database connection developed for PHP. By using PDO you can write one generalized query that can 'run anywhere' once connected. 
+
+ODBC is a standard database connection method developed to allow applications to connect the 'same way' to any database. 
+
+By using PDO and ODBC to connect to DB2 on IBM i you can use generalized methods to develop your application. 
 
 ## IBM Connection String Reference
 
 This is the collection of options to help you buid your ODBC string. 
 
 [IBM ODBC Connection String Keywords](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_74/rzaik/connectkeywords.htm){:target="_blank" rel="noopener"}
+
 
 ## Connecting A PHP Application Running On IBM i To A DB2 Database Running On IBM i 
 
