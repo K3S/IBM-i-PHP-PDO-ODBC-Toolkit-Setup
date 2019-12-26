@@ -14,7 +14,9 @@ This is 100% innaccurate and not true, and mostly comes from the command line in
 
 Instead there are options to leverage the IBM i OS to its absolute strength while employing modern techniques / interfaces so that users. 
 
-The power of [IBM RPG](https://en.wikipedia.org/wiki/IBM_RPG) is that it is write once, compile, and run on the platform 'forever'. No matter the 
+The power of [IBM RPG](https://en.wikipedia.org/wiki/IBM_RPG) is that it is write once, compile, and run on the platform 'forever'. No matter the OS upgrades and new hardware any of your code written in RPG / CL will run on the new system. If used correctly this can lower your future technical debt and allow a lot more 
+
+Fo your consideration I would suggest following (or putting into place with your current applications) the [CQRS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation) design philosphy to your application. 
 
 Below I have written out instructions for 4 distinct scenarios:
 * Running PHP on your IBM i with Apache as the web server
