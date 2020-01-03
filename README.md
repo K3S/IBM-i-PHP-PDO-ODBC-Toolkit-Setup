@@ -357,3 +357,11 @@ To re-add them if you bork something:
 ```
 
 This does take having the yum-config-manager already installed. If you do not have that already installed you might want to reach out to someone at IBM for help. 
+
+Or you can use our guide to install the packages found here: [How To Setup Open Source Package Manager if you don't have SSH access](https://ospm.k3s.com)
+
+# About K3S (King III Solutions, Inc)
+
+[K3S](https://k3s.com) is a software development company that specializes in inventory management and procurement solutions for the distribution industry. Their applications and solutions are developed to run on the IBM i OS (the best enterprise level OS!) and interface with any ERP application on any platform. 
+
+As well K3S open sources many of its [Guides & Utilities ](https://technical.k3s.com/docs/utilities/) in an effort to improve the IBM i community. 
