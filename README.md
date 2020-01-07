@@ -32,14 +32,22 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
 1.	Setup Package Manager: Make sure the you have installed the Open Source Package Management (OSPM) from ACS [Getting started with Open Source Package Management in IBM i ACS](https://www.ibm.com/support/pages/getting-started-open-source-package-management-ibm-i-acs){:target="_blank" rel="noopener"}
 
+If you do not have SSH working to setup OSPM, these instructions will willow you to install [OSPM from ACS](https://ospm.k3s.com){:target="_blank" rel="noopener"}
+
 2.	Install yum utilities: From the OSPM install yum-utils from the Available Packages tab. This will allow you to add 3rd party packages. 
 
-3. Install PHP RPMs: From a shell command line (I recommend SSHing in to the server, but I believe you can use QSH) install the repo to PHP RPMs hosted by Zend. Here is a list of 3rd Party RPMs (make sure you read the note below before you add PHP)
+3. Install PHP RPMs: From a shell command line (I recommend SSHing in to the server, but I believe you can use QSH) install the repo to PHP RPMs hosted by Zend. Here is a list of 3rd Party RPMs (make sure you read the note below before you add PHP). All of the open source software shoudl be in the '/QOpenSys' directory and yum specifically in '/QOpenSys/pkgs/bin'.
 
    [3rd Party Open Source Repos for IBM i](https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md){:target="_blank" rel="noopener"}
 
    ```
-    yum-config-manager --add-repo http://repos.zend.com/ibmiphp/
+   yum-config-manager --add-repo http://repos.zend.com/ibmiphp/
+   ```
+   
+   The command I ran because of where yum is located
+   
+   ```
+   /QOpenSys/pkgs/bin/yum-config-manager --add-repo http://repos.zend.com/ibmiphp/
    ```
 
    As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
