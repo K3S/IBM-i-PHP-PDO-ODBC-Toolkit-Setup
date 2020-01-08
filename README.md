@@ -273,6 +273,8 @@ This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PH
 
 While the IBM i OS has a built in ODBC server to accept connections by default, it does not have an ODBC client driver installed by default. You will need to download the [PASE IBM i ODBC](https://www.ibm.com/support/pages/odbc-driver-ibm-i-pase-environment){:target="_blank" rel="noopener"} driver and install. 
 
+Next you will need to install the unixODBC and unixODBC-devel from the OSPM. These drivers, along with the PASE IBM i ODBC driver will allow your app to connect to the DB2 database. 
+
 The directions will mention setting up a DSN within odbc.ini or the user odbc.ini. You can either set up your database connections this way or configure your odbc connection via a string as shown below. This approach allows you to track your connection configuration in your git repository.
 
 ```
