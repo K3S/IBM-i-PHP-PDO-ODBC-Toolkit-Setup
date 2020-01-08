@@ -279,6 +279,9 @@ I have found the order of the install of the next two pieces matter, so install 
 
 The directions will mention setting up a DSN within odbc.ini or the user odbc.ini. You can either set up your database connections this way or configure your odbc connection via a string as shown below. This approach allows you to track your connection configuration in your git repository.
 
+*NAM=1 - 
+*TSFT=1 - This sets the timestamp type to IBM standards
+
 ```
 <?php
 /*
