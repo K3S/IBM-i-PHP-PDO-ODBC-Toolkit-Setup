@@ -181,6 +181,8 @@ http {
         # Let's you go to http://example.com instead of http://example.com/index.php
         index index.php index.html;
 
+        # If you want this to be case insensitive, you will add an * after the ~
+        # Example: location ~* \.php$ {
         location ~ \.php$ {
             include /QOpenSys/etc/nginx/snippets/fastcgi-php.conf;
 
