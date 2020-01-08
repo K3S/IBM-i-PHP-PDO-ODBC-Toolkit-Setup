@@ -271,9 +271,11 @@ This is the collection of options to help you buid your ODBC string.
 
 This is an example of how to use PDO and ODBC to connect to DB2 on IBM i when PHP is running on IBM i. This will NOT work by default with Zend Server PHP as they do not include the necessary ODBC extension. You must either add the extension or run and install the PHP RPMs listed above. From a runtime perspective using ODBC there is no difference between the two. Zend Server has some nice debugging tools and a set way to deploy applications, and some extensions are not available (intl and zip) via the RPMs. Otherwise most shops should consider just running the PHP RPMs.
 
-While the IBM i OS has a built in ODBC server to accept connections by default, it does not have an ODBC client driver installed by default. You will need to download the [PASE IBM i ODBC](https://www.ibm.com/support/pages/odbc-driver-ibm-i-pase-environment){:target="_blank" rel="noopener"} driver and install. 
+I have found the order of the install of the next two pieces matter, so install step 1, then step 2. 
 
-Next you will need to install the unixODBC and unixODBC-devel from the OSPM. These drivers, along with the PASE IBM i ODBC driver will allow your app to connect to the DB2 database. 
+1. You will need to install the unixODBC and unixODBC-devel from the OSPM. These drivers, along with the PASE IBM i ODBC driver will allow your app to connect to the DB2 database.
+
+2. Next, while the IBM i OS has a built in ODBC server to accept connections by default, it does not have an ODBC client driver installed by default. You will need to download the [PASE IBM i ODBC](https://www.ibm.com/support/pages/odbc-driver-ibm-i-pase-environment){:target="_blank" rel="noopener"} driver and install. 
 
 The directions will mention setting up a DSN within odbc.ini or the user odbc.ini. You can either set up your database connections this way or configure your odbc connection via a string as shown below. This approach allows you to track your connection configuration in your git repository.
 
