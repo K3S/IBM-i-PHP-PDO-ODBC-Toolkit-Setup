@@ -333,7 +333,7 @@ return array (
 
 When accessing files via the ODBC connection there are jobs created called QZDASOINIT. These jobs can lock files and, at some point, you might need to release the locks (especially if you use the Lazy Close option to speed up response time) They appear to naturally go away after 15-30 minutes, however if you need instant release we have open sourced some code to help. 
 
-(Release Locks From ODBC Connections)[https://github.com/K3S/IBMi-Utilities/blob/master/ReleaseLocks/endjob.sqlrpgle]
+[Release Locks From ODBC Connections](https://github.com/K3S/IBMi-Utilities/blob/master/ReleaseLocks/endjob.sqlrpgle){:target="_blank" rel="noopener"}
 
 ## Calling RPG via The PHP Toolkit Over PDO ODBC When PHP Runs On Linux / Windows
 
