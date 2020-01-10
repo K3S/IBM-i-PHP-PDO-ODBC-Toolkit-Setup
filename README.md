@@ -329,6 +329,12 @@ return array (
 );
 ```
 
+## Releasing Locks On Files Created From ODBC Connections
+
+When accessing files via the ODBC connection there are jobs created called QZDASOINIT. These jobs can lock files and, at some point, you might need to release the locks (especially if you use the Lazy Close option to speed up response time) They appear to naturally go away after 15-30 minutes, however if you need instant release we have open sourced some code to help. 
+
+(Release Locks From ODBC Connections)[https://github.com/K3S/IBMi-Utilities/blob/master/ReleaseLocks/endjob.sqlrpgle]
+
 ## Calling RPG via The PHP Toolkit Over PDO ODBC When PHP Runs On Linux / Windows
 
 It is possible to call RPG from another server over ODBC. This uses your PDO connection referenced above. Below is the code from my application running in Zend Framework. Notice on instantiation of the toolkit (the new Toolkit line) I am passing the current database connection, and the fourth parameter is 'pdo'. This is allowing the Toolkit to use our current connection resource from the PDO object over ODBC to call RPG on the IBM i (yes this is ridiculously cool). 
