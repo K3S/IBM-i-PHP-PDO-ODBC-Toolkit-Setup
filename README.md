@@ -119,16 +119,16 @@ default path for the webroot was chosen) with the following contents:
 5. Recommended Additional Configuration Options For Apache, Speed, and a Common Issue: While your mileage may vary, I recommend these additional lines for your consideration in your Apache config to speed up your app. 
 
    ```
-   // These lines will add gzip compression to the data served. You want these near the top
+   # These lines will add gzip compression to the data served. You want these near the top
    LoadModule deflate_module /QSYS.LIB/QHTTPSVR.LIB/QZSRCORE.SRVPGM
    AddOutputFilterByType DEFLATE application/x-httpd-php application/json text/css application/x-javascript application/javascript text/html
 
-   // This will turn on Keep Alive and allow users to reuse older connections, making the serving of data faster. 
+   # This will turn on Keep Alive and allow users to reuse older connections, making the serving of data faster. 
    TimeOut 30000
    KeepAliveTimeout 30
    HotBackup Off
 
-   // If your code looks funky a lot of times it is your CCSID. This seems to help
+   # If your code looks funky a lot of times it is your CCSID. This seems to help
    DefaultFsCCSID 37
    CGIJobCCSID 37
    ```
