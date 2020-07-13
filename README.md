@@ -52,11 +52,16 @@ If you do not have SSH working to setup OSPM, these instructions will willow you
 
    As the repo RPMs for PHP were now added to ACS, now, just as you added yum-utils from the Available Packages tab, add the PHP packages / extensions you want. I would just add all of them that begin with php. They are not very large and you will end up probably using all of them.
 
-4. Configuring PHP: Mostly you will use the defaults already setup, but you can configure PHP now to fit your environment
-
-   PHP is configured in this file: 
+4. Configuring PHP: Mostly you will use the defaults already setup, but you can configure PHP now to fit your environment. You will need to move the php.ini file into the php sub directory to use the .ini file.  
+   
+   The default php.ini file is located in this directory:
    ```
    /QOpenSys/etc/php.ini
+   ```
+
+   This must be moved to the php subdirectory to be loaded by PHP RPMs:
+   ```
+   /QOpenSys/etc/php/php.ini
    ```
 
    Extensions are enabled via this directory: 
@@ -64,6 +69,11 @@ If you do not have SSH working to setup OSPM, these instructions will willow you
    /QOpenSys/etc/php/conf.d
    ```
    
+   Check that your php.ini file is loaded by creating an index.php file in your default htdocs directory with the below configuration output:
+   ```
+   <?php phpinfo(); ?>
+   ```
+         
    Visit [PHP.net](https://php.net){:target="_blank" rel="noopener"} to learn about configuration options. 
    
    Default versions of configuration files and all the extensions are included when you install the RPMs.
