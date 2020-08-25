@@ -276,6 +276,15 @@ This is the collection of options to help you buid your ODBC string.
 
 [IBM ODBC Connection String Keywords](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_74/rzaik/connectkeywords.htm){:target="_blank" rel="noopener"}
 
+## Important PHP Setting
+
+It is important to set in the php.ini OR the .user.ini file this ODBC setting:
+
+odbc.default_cursortype=0
+
+This sets the cursor type to Forward Only Cursor, and can provide a huge speed improvement for large amounts of data. 
+
+[ODBC PHP Configuration](https://www.php.net/manual/en/odbc.configuration.php#ini.uodbc.defaultcursortype)
 
 ## Connecting A PHP Application Running On IBM i To A DB2 Database Running On IBM i 
 
