@@ -32,7 +32,7 @@ This is a guide on how to install the PHP RPMs from Zend. This is the community 
 
 1.	Setup Package Manager: Make sure the you have installed the Open Source Package Management (OSPM) from ACS [Getting started with Open Source Package Management in IBM i ACS](https://www.ibm.com/support/pages/getting-started-open-source-package-management-ibm-i-acs){:target="_blank" rel="noopener"}
 
-If you do not have SSH working to setup OSPM, these instructions will willow you to install [OSPM from ACS](https://ospm.k3s.com){:target="_blank" rel="noopener"}
+If you do not have SSH working to setup OSPM, these instructions will allow you to install [OSPM from ACS](https://ospm.k3s.com){:target="_blank" rel="noopener"}
 
 2.	Install yum utilities: From the OSPM install yum-utils from the Available Packages tab. This will allow you to add 3rd party packages. 
 
