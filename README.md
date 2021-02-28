@@ -402,6 +402,16 @@ This does take having the yum-config-manager already installed. If you do not ha
 
 Or you can use our guide to install the packages found here: [How To Setup Open Source Package Manager if you don't have SSH access](https://ospm.k3s.com)
 
+# Potential Speed Improvements
+
+## Prestart ODBC Jobs (QZADASOINIT)
+
+Prestarting ODBC jobs can ensure there is enough jobs available and waiting when the requests come in, as well as making sure the jobs cycle through fast enough to keep things working. [IBM i Database Host Server and the QZDASOINIT Prestart Jobs](https://www.ibm.com/support/pages/ibm-i-database-host-server-and-qzdasoinit-prestart-jobs)
+
+## Exit Programs
+
+Exit Propgrams are a fantastic tool within the IBM i world that can attach a program to lots of individual actions within the system. As an example, a program can be called every time ODBC is used to access the database. This program can be used to check extra security or do a number of logging options. If this is forgetten and left on the ODBC connection, it can add a tremendous amount of overhead. Always double check your exit programs that they are needed and part of your application environment. [Harnessing Your ODBC Users with Exit Programs](https://www.itjungle.com/2006/11/29/fhg112906-story02/)
+
 # About K3S (King III Solutions, Inc)
 
 [K3S](https://k3s.com) is a software development company that specializes in inventory management and procurement solutions for the distribution industry. Their applications and solutions are developed to run on the IBM i OS (the best enterprise level OS!) and interface with any ERP application on any platform. 
