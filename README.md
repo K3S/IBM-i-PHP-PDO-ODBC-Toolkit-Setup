@@ -404,7 +404,7 @@ Or you can use our guide to install the packages found here: [How To Setup Open 
 
 # Potential Speed Improvements
 
-## Prestart ODBC Jobs (QZADASOINIT)
+## Prestart ODBC Jobs (QZDASOINIT)
 
 Prestarting ODBC jobs can ensure there is enough jobs available and waiting when the requests come in, as well as making sure the jobs cycle through fast enough to keep things working. [IBM i Database Host Server and the QZDASOINIT Prestart Jobs](https://www.ibm.com/support/pages/ibm-i-database-host-server-and-qzdasoinit-prestart-jobs)
 
