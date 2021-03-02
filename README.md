@@ -404,6 +404,8 @@ Or you can use our guide to install the packages found here: [How To Setup Open 
 
 # Potential Speed Improvements
 
+There are areas of the ODBC jobs that can have impact on the speed and response of your application depending on what you have enabled / disabled or running from a log standpoint. A couple key areas to take a look at are:
+
 ## Prestart ODBC Jobs (QZDASOINIT)
 
 Prestarting ODBC jobs can ensure there is enough jobs available and waiting when the requests come in, as well as making sure the jobs cycle through fast enough to keep things working. [IBM i Database Host Server and the QZDASOINIT Prestart Jobs](https://www.ibm.com/support/pages/ibm-i-database-host-server-and-qzdasoinit-prestart-jobs)
@@ -411,6 +413,10 @@ Prestarting ODBC jobs can ensure there is enough jobs available and waiting when
 ## Exit Programs
 
 Exit Propgrams are a fantastic tool within the IBM i world that can attach a program to lots of individual actions within the system. As an example, a program can be called every time ODBC is used to access the database. This program can be used to check extra security or do a number of logging options. If this is forgetten and left on the ODBC connection, it can add a tremendous amount of overhead. Always double check your exit programs that they are needed and part of your application environment. [Harnessing Your ODBC Users with Exit Programs](https://www.itjungle.com/2006/11/29/fhg112906-story02/)
+
+## Trace TCP/IP Application (TRCTCPAPP)
+
+You can enable tracing on a TCP/IP application to learn more about the traffic within your app. If this is left on there can be a significant amount of overhead. [Trace TCP/IP Application (TRCTCPAPP)](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_71/cl/trctcpapp.htm)
 
 # About K3S (King III Solutions, Inc)
 
