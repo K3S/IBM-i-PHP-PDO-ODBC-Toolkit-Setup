@@ -38,7 +38,7 @@ If you do not have SSH working to setup OSPM, these instructions will allow you 
 
 3. Install PHP RPMs: From a shell command line (I recommend SSHing in to the server, but I believe you can use QSH) install the repo to PHP RPMs hosted by Zend. Here is a list of 3rd Party RPMs (make sure you read the note below before you add PHP). All of the open source software shoudl be in the '/QOpenSys' directory and yum specifically in '/QOpenSys/pkgs/bin'.
 
-   [3rd Party Open Source Repos for IBM i](https://bitbucket.org/ibmi/opensource/src/master/docs/yum/3RD_PARTY_REPOS.md){:target="_blank" rel="noopener"}
+   [3rd Party Open Source Repos for IBM i](https://ibmi-oss-docs.readthedocs.io/en/latest/yum/3RD_PARTY_REPOS.html){:target="_blank" rel="noopener"}
 
    ```
    yum-config-manager --add-repo http://repos.zend.com/ibmiphp/
