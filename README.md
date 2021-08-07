@@ -1,3 +1,5 @@
+# IBM i PHP / PDO / ODBC Setup
+
 # Purpose
 
 I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. Much of this info is copied and pasted, and I do not represent it as my own, only that I have aggregated it into one place for ease-of-use (there were many different sources for all of this). 
