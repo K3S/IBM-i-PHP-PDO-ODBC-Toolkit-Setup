@@ -107,13 +107,15 @@ of the page to save it.
 
 3. Configure FastCGI: Now that Apache is set up for FastCGI, we need to configure a FastCGI handler
 for application/x-httpd-php. Without this, the FastCGI processor won't work
-and the PHP script will merely be downloaded by the web browser.
+and the PHP script will merely be downloaded by the web browser. As well we want to set the number
+of PHP jobs that can run scripts for us. Each job can handle 1 at a time. By default we will start 
+with 10, but this can be increased if needed. 
 
    Create a file called fastcgi.conf in `/www/<server name>/conf` (assuming the
 default path for the webroot was chosen) with the following contents:
 
    ```
-   Server type="application/x-httpd-php" CommandLine="/QOpenSys/pkgs/bin/php-cgi" StartProcesses="1"
+   Server type="application/x-httpd-php" CommandLine="/QOpenSys/pkgs/bin/php-cgi" StartProcesses="1" SetEnv="PHP_FCGI_CHILDREN=10"
    ```
 
    You can now start the web server.
@@ -137,6 +139,7 @@ default path for the webroot was chosen) with the following contents:
    TimeOut 30000
    KeepAliveTimeout 30
    HotBackup Off
+   ThreadsPerChild 40
 
    # If your code looks funky a lot of times it is your CCSID. This seems to help
    DefaultFsCCSID 37
