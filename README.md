@@ -261,6 +261,21 @@ for the web server, eg. `/www/php/htdocs`:
 <?php echo phpinfo(); ?>
 ```
 
+## Tuning PHP and Apache
+
+Getting Apache and PHP just to work is one thing. Being able to handle a web application under load without stressing your machine is another thing.
+After you have your web app up and running and ready for production, I recommend the various articles below to read about how to fine tune your 
+machine to handle significant load from users. 
+
+[Guru Right Size Your PHP](https://www.itjungle.com/2018/12/03/guru-right-size-your-php/)
+[OPTIMIZE YOUR IBM i WEB APPLICATION USING FASTCGI](https://www.seidengroup.com/2021/10/28/optimize-ibmi-web-application-fastcgi/)
+
+## Automatically Configuring IBM i Apache
+
+You can install and use the tool below to do all the steps listed. 
+
+[AUTOMATICALLY CONFIGURE IBM i APACHE WEB SERVER TO RUN PHP WITH SITEADD](https://www.seidengroup.com/php-documentation/automatically-configure-ibm-i-apache-web-server-to-run-php-with-siteadd/)
+
 # Example ODBC Connection To DB2 On IBM i
 
 These are some example connection strings and directions to help people connect via PDO / ODBC to DB2 on IBM i. These examples include running a PHP application on a Linux / Windows server OR running PHP directly on IBM i. 
