@@ -80,6 +80,23 @@ If you do not have SSH working to setup OSPM, these instructions will allow you 
    
    Updates to RPMs: If you have made changes to the configuration files, subsequent RPM updates will preserve your changes. If you are running the config files unchanged from install it will install the newer versions. But if you made changes to the config files it will keep the versions you have and write the new default ones to the same directory with this naming scheme: _filename_.rpmnew
 
+# Using chroot to install multiple versions of PHP
+
+IBM i chroot is an open source package that allows you to create an IFS level container for different open source packages. Contextually chroot 'changes the root' for certain operations so to the instance this sub-directory looks and acts like the root directory. This allows us to install multiple versions / instances of things (like the open source applications via yum) which were only designed to be installed once per machine. 
+
+With these multiple chroot environments we could have an install of PHP 7.3, 7.4, 8.0 and 8.1 running on the same machine, but maintained independently. 
+
+To install chroot:
+```
+yum install ibmichroot
+```
+
+Once installed lets create a CHROOT for housing the standard version of PHP released by Zend, 7.3. Note below I have named the chroot PHP73, but you can choose to name it whatever you would like. 
+```
+chroot_setup -y /QOpenSys/chroots/PHP73
+```
+
+
 # Setup Apache to Run PHP
 
 1. Create New Apache Instance On IBM i: Visit http://ibmiipaddress:2001/HTTPAdmin on your server where you replace ibmiipaddress with the IP address of your IBM server (note that the [Admin Server](https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rzaie/rzaiemngsrvr.htm){:target="_blank" rel="noopener"} must be running). Click 'Create HTTP Server' in the top left hand corner, and go through the steps of adding a new Apache server. Note the webroot folders if you adjust from defaults. 
