@@ -470,7 +470,8 @@ QUSRWORK Duplicate:
 
 ## Launch your application and test!
 
-Go to your application and visit a page that will access the database. Then run WRKACTJOB and check that the QZDASOINIT jobs are running in your new subsystem.
+Go to your application and visit a page that will access the database. Then run WRKACTJOB and check that the QZDASOINIT jobs are running in your new subsystem. If successful
+you should see your jobs in the new subsystem. 
 
 # Potential Speed Improvements
 
