@@ -2,7 +2,7 @@
 
 I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. Much of this info is copied and pasted, and I do not represent it as my own, only that I have aggregated it into one place for ease-of-use (there were many different sources for all of this). 
 
-Notably, thank you to [Chuk Shirley](https://github.com/chukShirley){:target="_blank" rel="noopener"}, [Stephanie Rabbini](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, [Dave Dressler](https://godzillai5.wordpress.com/){:target="_blank" rel="noopener"}, and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
+Notably, thank you to [Chuk Shirley](https://github.com/chukShirley){:target="_blank" rel="noopener"}, [Stephanie Rabbini](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, [Dave Dressler](https://godzillai5.wordpress.com/){:target="_blank" rel="noopener"}, [Dawn May](https://dawnmayi.com/){:target="_blank" rel="noopener"},and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
 
 # Synopsis (What The Heck Does This All Mean??)
 
@@ -436,6 +436,41 @@ To re-add them if you bork something:
 This does take having the yum-config-manager already installed. If you do not have that already installed you might want to reach out to someone at IBM for help. 
 
 Or you can use our guide to install the packages found here: [How To Setup Open Source Package Manager if you don't have SSH access](https://ospm.k3s.com)
+
+# Running ODBC In A Different Subsystem
+
+By default, ODBC runs in the QUSRWRK subsystem. This can be changed to run in a different subsystem via either the requesting IP address 
+or by the user profile. The most useful is to route the request via user profile. This will entail four pieces to get it working pieces to get working.
+This is all based off of IBM's article [Creating a user-defined subsystem](https://www.ibm.com/docs/en/i/7.4?topic=subsystem-creating-user-defined-server) 
+and Dawn May's article [Routing ODBC Requests to a User-Defined Subsystem](https://dawnmayi.com/2015/08/03/route-db2-requests-to-a-specific-subsystem/)
+
+## Create A Library For The Subsystem
+
+```CRTLIB SBSLIB TEXT('Library to hold subsystem configuration objects')```
+
+## Create a class. The class defines certain performance characteristics for your subsystem including run priority, time slice, and default wait times.
+
+```CRTCLS SBSLIB/MYSBS RUNPTY(20) TIMESLICE(2000) DFTWAIT(30) TEXT('Custom Subsystem Class')```
+
+## Create The Subsystem Description Or Create A Duplicate Of QUSRWRK
+
+New Subsystem:
+```CRTSBSD SBSD(SBSLIB/MYSBS) POOLS((1 *BASE)) TEXT('Custom Server Subsystem')```
+
+QUSRWORK Duplicate:
+```CRTDUPOBJ OBJ(QUSRWRK) FROMLIB(QSYS) OBJTYPE(*SBSD) TOLIB(SBSLIB)```
+
+## Create The Prestart Jobs for QZDASOINIT For Our ODBC Connection 
+
+```CRTJOBQ JOBQ(SBSLIB/MYSBS) ADDJOBQE SBSD(SBSLIB/MYSBS) JOBQ(SBSLIB/MYSBS) MAXACT(*NOMAX)```
+
+## Add the Routing Entry to the ODBC Connection Based Off Of User Profile Using SQL (note this isnt command line, but via ACS or another SQL tool)
+
+```CALL QSYS2.SET_SERVER_SBS_ROUTING('DAWN', 'QZDASOINIT', 'DAWNMAY')```
+
+## Launch your application and test!
+
+Go to your application and visit a page that will access the database. Then run WRKACTJOB and check that the QZDASOINIT jobs are running in your new subsystem.
 
 # Potential Speed Improvements
 
