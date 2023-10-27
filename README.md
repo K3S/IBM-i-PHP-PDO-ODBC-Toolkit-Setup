@@ -2,7 +2,7 @@
 
 I have created this guide as a reference for myself, but also to help others who might be trying to accomplish the same thing. Much of this info is copied and pasted, and I do not represent it as my own, only that I have aggregated it into one place for ease-of-use (there were many different sources for all of this). 
 
-Notably, thank you to [Chuk Shirley](https://github.com/chukShirley){:target="_blank" rel="noopener"}, [Stephanie Rabbini](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, [Dave Dressler](https://godzillai5.wordpress.com/){:target="_blank" rel="noopener"}, [Dawn May](https://dawnmayi.com/){:target="_blank" rel="noopener"},and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
+Notably, thank you to [Chuk Shirley](https://github.com/chukShirley){:target="_blank" rel="noopener"}, [Stephanie Rabbini](https://twitter.com/jordiwes){:target="_blank" rel="noopener"}, [Alan Seiden](https://twitter.com/alanseiden){:target="_blank" rel="noopener"}, [Dave Dressler](https://godzillai5.wordpress.com/){:target="_blank" rel="noopener"}, [Dawn May](https://dawnmayi.com/){:target="_blank" rel="noopener"}, and [Kevin Adler](https://twitter.com/kadler_ibm){:target="_blank" rel="noopener"}. 
 
 # Synopsis (What The Heck Does This All Mean??)
 
@@ -25,6 +25,10 @@ Below I have written out instructions for 4 distinct scenarios:
 * Running PHP on your IBM i with NGINX as the web server
 * Running PHP on another server (Windows or Linux) but connecting back to your IBM i DB2 database
 * Calling RPG / CL programs on your IBM i from PHP running on another server (Windows or Linux)
+
+I have also included:
+* Running your ODBC connection in its own subsystem
+* Running your Apache instance in its own subsystem
 
 # Installing PHP RPM on IBM i
 
@@ -84,7 +88,7 @@ If you do not have SSH working to setup OSPM, these instructions will allow you 
 
 IBM i chroot is an open source package that allows you to create an IFS level container for different open source packages. Contextually chroot 'changes the root' for certain operations so to the instance this sub-directory looks and acts like the root directory. This allows us to install multiple versions / instances of things (like the open source applications via yum) which were only designed to be installed once per machine. 
 
-With these multiple chroot environments we could have an install of PHP 7.3, 7.4, 8.0 and 8.1 running on the same machine, but maintained independently. 
+With these multiple chroot environments we could have an install of PHP 7.4, 8.0, 8.1, and 8.2 running on the same machine, but maintained independently. 
 
 To install chroot:
 ```
@@ -477,6 +481,8 @@ requests from the user profile ODBCUSER to the subsystem MYSBS.Note that the ODB
 
 To remove the entry, just do the same entry but set the subsystem to null. 
 ```CALL QSYS2.SET_SERVER_SBS_ROUTING('ODBCUSER', 'QZDASOINIT', NULL)```
+
+# Running Apache In A Different Subsystem
 
 ## Launch your application and test!
 
