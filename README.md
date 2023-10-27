@@ -471,7 +471,7 @@ You could also just duplicate QUSRWORK Duplicate:
 
 This will create the prestart jobs for our ODBC connection. This will allow us to have a certain number of jobs waiting
 for requests to come in. Without this the ODBC jobs will still be created in QUSRWRK, even if we have the routing below. 
-```ADDPJE SBSD(ODBCLIB/ODBCSBS) PGM(QSYS/QZDASOINIT) INLJOBS(50) THRESHOLD(4) JOB(QZDASOINIT) JOBD(QSYS/QZBSJOBD) CLS(QGPL/QCASERVR) STRJOBS(*YES)```
+```ADDPJE SBSD(ODBCLIB/ODBCSBS) PGM(QSYS/QZDASOINIT) INLJOBS(50) THRESHOLD(4) JOB(QZDASOINIT) STRJOBS(*YES)```
 
 ## Add the Routing Entry to the ODBC Connection Based Off Of User Profile Using SQL (note this isnt command line, but via ACS or another SQL tool)
 
