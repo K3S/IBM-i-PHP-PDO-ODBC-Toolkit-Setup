@@ -492,6 +492,8 @@ To remove the entry, just do the same entry but set the subsystem to null.
 
 # Running Apache In A Different Subsystem
 
+These instructions are based off Dawn May's guide for [Run an HTTP Server in its own subsystem](https://dawnmayi.com/2014/05/21/run-an-http-server-in-its-own-subsystem/)
+
 ## Launch your application and test!
 
 Go to your application and visit a page that will access the database. Then run WRKACTJOB and check that the QZDASOINIT jobs are running in your new subsystem. If successful
