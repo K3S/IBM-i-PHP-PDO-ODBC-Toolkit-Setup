@@ -446,27 +446,37 @@ and Dawn May's article [Routing ODBC Requests to a User-Defined Subsystem](https
 
 ## Create A Library For The Subsystem
 
-```CRTLIB SBSLIB TEXT('Library to hold subsystem configuration objects')```
+```CRTLIB ODBCLIB TEXT('Library to hold subsystem configuration objects for ODBC Connection')```
+ODBCLIB is the subsystem library name. You can name it whatever you want.
 
 ## Create a class. The class defines certain performance characteristics for your subsystem including run priority, time slice, and default wait times.
 
-```CRTCLS SBSLIB/MYSBS RUNPTY(20) TIMESLICE(2000) DFTWAIT(30) TEXT('Custom Subsystem Class')```
+```CRTCLS ODBCLIB/ODBCSBS RUNPTY(20) TIMESLICE(2000) DFTWAIT(30) TEXT('Custom Subsystem Class For ODBC')```
+With our aforementioned ODBCLIB, ODBCSBS is the class name so we have characterisits for the subsystem.
 
 ## Create The Subsystem Description Or Create A Duplicate Of QUSRWRK
 
 New Subsystem:
-```CRTSBSD SBSD(SBSLIB/MYSBS) POOLS((1 *BASE)) TEXT('Custom Server Subsystem')```
+```CRTSBSD SBSD(ODBCLIB/ODBCSBS) POOLS((1 *BASE)) TEXT('Custom Server Subsystem For ODBC')```
+Name is repeated, but ODBCSBS is the subsystem name.
 
-QUSRWORK Duplicate:
-```CRTDUPOBJ OBJ(QUSRWRK) FROMLIB(QSYS) OBJTYPE(*SBSD) TOLIB(SBSLIB)```
+You could also just duplicate QUSRWORK Duplicate:
+```CRTDUPOBJ OBJ(QUSRWRK) FROMLIB(QSYS) OBJTYPE(*SBSD) TOLIB(ODBCLIB)```
 
 ## Create The Prestart Jobs for QZDASOINIT For Our ODBC Connection 
 
-```CRTJOBQ JOBQ(SBSLIB/MYSBS) ADDJOBQE SBSD(SBSLIB/MYSBS) JOBQ(SBSLIB/MYSBS) MAXACT(*NOMAX)```
+This will create the prestart jobs for our ODBC connection. This will allow us to have a certain number of jobs waiting
+for requests to come in. Without this the ODBC jobs will still be created in QUSRWRK, even if we have the routing below. 
+```ADDPJE SBSD(ODBCLIB/ODBCSBS) PGM(QSYS/QZDASOINIT) INLJOBS(50) THRESHOLD(4) JOB(QZDASOINIT) JOBD(QSYS/QZBSJOBD) CLS(QGPL/QCASERVR) STRJOBS(*YES)```
 
 ## Add the Routing Entry to the ODBC Connection Based Off Of User Profile Using SQL (note this isnt command line, but via ACS or another SQL tool)
 
-```CALL QSYS2.SET_SERVER_SBS_ROUTING('DAWN', 'QZDASOINIT', 'DAWNMAY')```
+Below is the SQL to add the routing entry to the ODBC connection based off of user profile. This will route all ODBC
+requests from the user profile ODBCUSER to the subsystem MYSBS.Note that the ODBCUSER needs all the proper authority to run the ODBC jobs. 
+```CALL QSYS2.SET_SERVER_SBS_ROUTING('ODBCUSER', 'QZDASOINIT', 'ODBCSBS')```
+
+To remove the entry, just do the same entry but set the subsystem to null. 
+```CALL QSYS2.SET_SERVER_SBS_ROUTING('ODBCUSER', 'QZDASOINIT', NULL)```
 
 ## Launch your application and test!
 
