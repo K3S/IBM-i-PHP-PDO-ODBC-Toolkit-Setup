@@ -17,8 +17,8 @@ search:
   button: false
 
 # Google Analytics
-# ga_tracking: G-XXXXXXXXXX
-# ga_tracking_anonymize_ip: true
+ga_tracking: G-X1JYR0VL99
+ga_tracking_anonymize_ip: true
 
 # Navigation
 nav_sort: case_insensitive
