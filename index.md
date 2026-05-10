@@ -12,6 +12,11 @@ A practical guide for shops that want to run PHP on IBM i, connect PHP applicati
 
 This guide consolidates information that's scattered across IBM documentation, vendor sites, community blogs, and a decade of mailing-list threads — into one place, in a consistent voice, with examples that actually work.
 
+
+[Get started](#start-here){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View on GitHub](https://github.com/K3S/IBM-i-PHP-PDO-ODBC-Toolkit-Setup){: .btn .fs-5 .mb-4 .mb-md-0 }
+
+
 ---
 
 ## Who this is for
@@ -27,7 +32,7 @@ You don't need to be an IBM i expert. We'll explain the things that are unusual 
 
 ---
 
-## What this guide covers
+## Start here
 
 - **Installing PHP on IBM i** via Zend's RPMs — the path most shops should take.
 - **Multiple PHP versions side by side** using `chroot`, so you can run 7.4, 8.0, 8.3, and 8.4 on the same partition without conflict.
