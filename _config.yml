@@ -33,19 +33,25 @@ aux_links:
     - "https://k3s.com"
 aux_links_new_tab: true
 
-# External links in the sidebar — cross-link the K3S tutorial network
+# External link in the sidebar
 nav_external_links:
   - title: King III Solutions
     url: https://k3s.com
     hide_icon: false
   - title: RPG Tutorial
-    url: https://rpgtutorial.k3s.com
+    url: https://rpgtutorial.k3s.com/
     hide_icon: false
-  - title: IBM i AI Workers
-    url: https://ibmi-ai-workers.k3s.com
+  - title: IBM i Open Source Setup
+    url: https://ospm.k3s.com/
     hide_icon: false
   - title: Action API Pattern
     url: https://action-api-pattern.k3s.com/
+    hide_icon: false
+  - title: AI Patterns For Business Systems
+    url: https://aipatterns.k3s.com
+    hide_icon: false
+  - title: IBM i AI Workers
+    url: https://ibmi-ai-workers.k3s.com
     hide_icon: false
 
 # Code copy button
